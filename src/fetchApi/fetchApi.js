@@ -11,6 +11,6 @@ export async function fetchMovieByKeyWord(value) {
     return await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${value}&include_adult=false`);
 };
 
-export async function fetchMovieById(movieId) {
-  return await axios.get(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);  
+export async function fetchMovieById(filmId) {
+  return await axios.get(`${BASE_URL}/movie/${filmId}?api_key=${API_KEY}`);  
 };

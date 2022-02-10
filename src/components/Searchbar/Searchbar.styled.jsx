@@ -30,6 +30,11 @@ display: inline-block;
     border: 0;
     cursor: pointer;
     outline: none;
+    opacity: 0.8;
     background-color: slategrey;
     border-radius: 5px;
+
+     &:hover, &:focus {
+    opacity: 1;
+  }
 `;
