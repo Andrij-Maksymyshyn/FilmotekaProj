@@ -1,21 +1,26 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useLocation, Outlet } from "react-router-dom";
 import { fetchMovieById } from '../fetchApi/fetchApi';
 import { Toaster, toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
-import { Main, Box, Div1, Div2, Img } from './MovieDetailsPage.styled';
+import { Main, Box, Div1, Div2, Img, LinkStyled, Button, LinkStyledAddIn } from './MovieDetailsPage.styled';
+import { FaArrowLeft } from 'react-icons/fa';
+
 
 const noPosterImg = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
+
 
 export function MovieDetailsPage() {
     const { moviesId } = useParams();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(false);
+    const location = useLocation();
+    const grandPath = useRef(location);
 
-
+    
     useEffect(() => {
-               setLoading(true);      
 
+        setLoading(true);    
         
         fetchMovieById(moviesId).then(data => {
             const { data: { poster_path, title, name, overview, vote_average, genres } } = data;                
@@ -25,7 +30,7 @@ export function MovieDetailsPage() {
                 poster: poster_path ? ('https://image.tmdb.org/t/p/w500' + poster_path) : noPosterImg,
                 title,
                 name,
-                overview,
+                overview: overview ? overview : "There is no overview",
                 vote_average,
                 genresValues: (genres.length === 0) ?
                     "There are no genres" :
@@ -38,23 +43,25 @@ export function MovieDetailsPage() {
             
             .catch(error => {
                 console.log('Whoops, something went wrong...', error);
-                return toast.error('Sorry, there is no film. Try another request...');
+                return toast.error('There is no film. Try another request...');
             })
 
             .finally(() => setTimeout(() => {
                 setLoading(false);
             }, 1000));       
         
-    }, [moviesId]);      
+    }, [moviesId]);
     
-   
+      
 
     return (
         
         <Main>
             
             <Toaster position="top-right" />
-            {loading && <Loader/>}
+            {loading && <Loader />}
+            
+            <Button type="button"><LinkStyled to={grandPath.current?.state?.from ?? `/`} state={{ from: grandPath.current }}><FaArrowLeft />Go back</LinkStyled></Button>
                 
             {movie && (
                 <Box>
@@ -70,9 +77,30 @@ export function MovieDetailsPage() {
                     <p>{movie.genresValues}</p>
                     </Div2>      
                 </Box>                    
-                )}              
-                                
+            )}
+
+            <hr />
+
+            <h3>Additional information</h3>
+
+             <ul>
+          <li>
+            <LinkStyledAddIn to={`/movies/${moviesId}/cast`} state={{ from: grandPath.current }}>
+              Cast
+            </LinkStyledAddIn>
+          </li>
+          <li>
+            <LinkStyledAddIn to={`/movies/${moviesId}/reviews`} state={{ from: grandPath.current }}>
+              Reviews
+            </LinkStyledAddIn>
+          </li>
+            </ul>
             
+            <hr/>            
+            
+            <Outlet/>
+            
+                                          
         </Main>
     )
 };
