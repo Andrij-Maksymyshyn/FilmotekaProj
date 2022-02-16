@@ -13,7 +13,8 @@ export function MoviesPage() {
   const [loading, setLoading] = useState(false);
   const searchFilmValue = searchParams.get('value');
   const location = useLocation();
-    
+
+  
 
      const addSearchValue = formData => {
      setSearchParams({value: formData})   

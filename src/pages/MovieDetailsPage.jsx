@@ -85,12 +85,12 @@ export function MovieDetailsPage() {
 
              <ul>
           <li>
-            <LinkStyledAddIn to={`/movies/${moviesId}/cast`} state={{ from: grandPath.current }}>
+            <LinkStyledAddIn to={`/movies/${moviesId}/cast`} >
               Cast
             </LinkStyledAddIn>
           </li>
           <li>
-            <LinkStyledAddIn to={`/movies/${moviesId}/reviews`} state={{ from: grandPath.current }}>
+            <LinkStyledAddIn to={`/movies/${moviesId}/reviews`} >
               Reviews
             </LinkStyledAddIn>
           </li>
