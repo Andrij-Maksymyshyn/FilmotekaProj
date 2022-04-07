@@ -3,12 +3,12 @@ import { useParams, useLocation, Outlet } from "react-router-dom";
 import { fetchMovieById } from '../fetchApi/fetchApi';
 import { Toaster, toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
-import { Main, Box, Div1, Div2, Img, LinkStyled, Button, LinkStyledAddIn } from './MovieDetailsPage.styled';
+import { Main, Box, Div1, Div2, Img, LinkStyled, Button, LinkStyledAddIn, Uldet } from './MovieDetailsPage.styled';
 import { FaArrowLeft } from 'react-icons/fa';
+import { noPosterImg } from './HomePage';
 
 
-const noPosterImg = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
-
+  
 
 export function MovieDetailsPage() {
     const { moviesId } = useParams();
@@ -83,7 +83,7 @@ export function MovieDetailsPage() {
 
             <h3>Additional information</h3>
 
-             <ul>
+             <Uldet>
           <li>
             <LinkStyledAddIn to={`/movies/${moviesId}/cast`} >
               Cast
@@ -94,7 +94,7 @@ export function MovieDetailsPage() {
               Reviews
             </LinkStyledAddIn>
           </li>
-            </ul>
+            </Uldet>
             
             <hr/>            
             

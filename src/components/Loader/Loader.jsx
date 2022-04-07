@@ -1,15 +1,10 @@
-import { SpinnerRoundOutlined } from 'spinners-react';
 import { SpinnerWrapper } from './Loader.styled';
+import { CircularProgress } from '@mui/material';
 
 const Loader = () => (
-    <SpinnerWrapper>
-       <SpinnerRoundOutlined
-      size={50}
-      thickness={100}
-      speed={100}
-      color="#36ad47"
-    />
-    </SpinnerWrapper>
+  <SpinnerWrapper>
+    <CircularProgress />       
+  </SpinnerWrapper>
 );
 
 export default Loader;

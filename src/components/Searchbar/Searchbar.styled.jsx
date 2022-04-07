@@ -14,12 +14,13 @@ export const Input = styled.input`
     margin-right: 15px;
     width: 20%;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 16px;
     outline: none;
-    border-color: dimgrey;;
+    border-color: dimgrey;
+
   &::placeholder {
     font: inherit;
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 
@@ -31,7 +32,7 @@ display: inline-block;
     cursor: pointer;
     outline: none;
     opacity: 0.8;
-    background-color: slategrey;
+    background-color: forestgreen;
     border-radius: 5px;
 
      &:hover, &:focus {

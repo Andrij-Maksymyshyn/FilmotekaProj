@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { fetchTrendCollection } from '../fetchApi/fetchApi';
 import Loader from '../components/Loader';
-import { Main } from './HomePage.styled';
+import { Main, UlHome, LinkHome, ImgHome, LiHome, PHome, H1 } from './HomePage.styled';
+
+
+export const noPosterImg = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
+
 
 
 export function HomePage() {
@@ -37,12 +41,17 @@ export function HomePage() {
     return (
         <Main>
              {loading && <Loader/>}
-            <h1>Trending today</h1>
-            <ul>
-                {movies.map(({id, title, name}) => (
-                    <li key={id}><Link to={`/movies/${id}`} state={{ from: location }}>{title ? title : name}</Link></li>
+            <H1>Trending today</H1>
+            <UlHome>
+                {movies.map(({id, title, name, poster_path}) => (
+                    <LiHome key={id}>
+                        <LinkHome to={`/movies/${id}`} state={{ from: location }}>                            
+                                <ImgHome src={poster_path ? ('https://image.tmdb.org/t/p/w500' + poster_path) : noPosterImg} alt={title ? title : name} />
+                                <PHome>{title ? title : name}</PHome>                           
+                        </LinkHome>
+                    </LiHome>
                 ))}
-            </ul>
+            </UlHome>
             {errorM && <h2>Whoops, something went wrong: error.</h2>}
             </Main>
     )

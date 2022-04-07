@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import { Toaster, toast } from 'react-hot-toast';
 import Searchbar from '../components/Searchbar';
 import { fetchMovieByKeyWord } from '../fetchApi/fetchApi';
 import Loader from '../components/Loader';
+import { noPosterImg } from './HomePage';
+import { UlMovies, LinkMovies, LiMovies, ImgMovies, PMovies } from './MoviesPage.styled';
+
 
 
 export function MoviesPage() {
@@ -59,11 +62,16 @@ export function MoviesPage() {
       <Toaster position="top-right" />
             <Searchbar propSubmit={addSearchValue} />
         {loading && <Loader />}
-            <ul>
-                {movies.map(({id, title, name}) => (
-                    <li key={id}><Link to={`${id}`} state={{ from: location }}>{title ? title : name}</Link></li>
+            <UlMovies>
+                {movies.map(({id, title, name, poster_path}) => (
+                  <LiMovies key={id}>
+                    <LinkMovies to={`${id}`} state={{ from: location }}>
+                      <ImgMovies src={poster_path ? ('https://image.tmdb.org/t/p/w500' + poster_path) : noPosterImg} alt={title ? title : name}/>
+                      <PMovies>{title ? title : name}</PMovies>
+                    </LinkMovies>
+                  </LiMovies>
                 ))}
-            </ul>
+            </UlMovies>
             {errorM && <h2>Whoops, something went wrong: error.</h2>}
     </div>
   );

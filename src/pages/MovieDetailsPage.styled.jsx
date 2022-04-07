@@ -42,8 +42,16 @@ color: black;
 `;
 
 export const LinkStyledAddIn = styled(NavLink)`
+color: black;
+text-decoration: none;
+font-weight: 500;
+
 &.active {
-    color: tomato;
-}    
+    color: blue;
+}
+`;
+
+export const Uldet = styled.ul`
+list-style: none;
 `;
 

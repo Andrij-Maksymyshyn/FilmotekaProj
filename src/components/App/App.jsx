@@ -21,8 +21,8 @@ export default function App() {
    return (
     <Suspense fallback=''>
      <Routes>
-         <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage/>} />
+        <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage/>} />
         <Route path="movies" element={<MoviesPage />} />
         <Route path="movies/:moviesId" element={<MovieDetailsPage />}>
           <Route path="cast" element={<Cast />} />

@@ -13,7 +13,14 @@ export const Nav = styled.nav`
 `;
 
 export const LinkStyled = styled(NavLink)`
+color: black;
+text-decoration: none;
+font-weight: 500;
+:not(:last-child) {
+margin-right: 15px;
+}
+
 &.active {
-    color: tomato;
+    color: blue;
 }    
 `;
