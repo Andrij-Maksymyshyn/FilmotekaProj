@@ -16,6 +16,7 @@ export function MovieDetailsPage() {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
     const grandPath = useRef(location);
+    console.log(grandPath);
 
     
     useEffect(() => {
