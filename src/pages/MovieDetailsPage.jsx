@@ -71,7 +71,7 @@ export function MovieDetailsPage() {
                     </Div1>
                     <Div2>
                     <h1>{movie.title ? movie.title : movie.name}</h1>
-                    <p>User Score: {movie.vote_average * 10}%</p>
+                    <p>User Score: {Math.round(movie.vote_average) * 10}%</p>
                     <h2>Overview</h2>
                     <p>{movie.overview}</p>
                     <h3>Genres</h3>
